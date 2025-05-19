@@ -7,5 +7,52 @@
 </head>
 <body>
     <h1>設定ページ</h1>
+    <div>
+        <p>パスワード修正</p>
+        <p>・・・</p>
+
+        <p>メールアドレス</p>
+        <p>testmail@testmail.co.jp</p>
+
+        <p>電話番号</p>
+        <p>000-111-222</p>
+
+        <p>性別<span>※任意</span></p>
+        <p>女性</p>
+
+        <p>年齢<span>※任意</span></p>
+        <p>35歳</p>
+
+        <button>修正</button>
+    </div><!-- 修正ボタン押下前に表示 -->
+
+    <div>
+        <p>パスワード修正</p>
+        <input type="password">
+
+        <p>メールアドレス</p>
+        <input type="email">
+
+        <p>電話番号</p>
+        <input type="tel">
+
+        <p>性別<span>※任意</span></p>
+        <fieldset>
+            <div>
+                <label for="man">男性</label>
+                <input type="radio" id="man" name="gender">
+                <label for="woman">女性</label>
+                <input type="radio" id="woman" name="gender">
+                <label for="woman">無回答</label>
+                <input type="radio" id="no_answer" name="gender">
+            </div>
+        </fieldset>
+
+        <p>年齢<span>※任意</span></p>
+        <input type="number">
+
+        <button>修正</button>
+    </div><!-- 修正ボタン押下後に表示 -->
+
 </body>
 </html>

@@ -7,5 +7,36 @@
 </head>
 <body>
     <h1>会員登録ページ</h1>
+    <form action="success.html">
+        <p>ユーザ名</p>
+        <input type="text">
+
+        <p>メールアドレス</p>
+        <input type="email">
+
+        <p>電話番号</p>
+        <input type="tel">
+
+        <p>性別</p>
+        <fieldset>
+            <div>
+                <label for="man">男性</label>
+                <input type="radio" id="man" name="gender">
+                <label for="woman">女性</label>
+                <input type="radio" id="woman" name="gender">
+            </div>
+        </fieldset>
+
+        <p>パスワード設定</p>
+        <input type="password">
+
+        <p>パスワード確認用</p>
+        <input type="password">
+
+        <p>年齢</p>
+        <input type="number">
+
+        <input type="submit" value="登録">
+    </form>
 </body>
 </html>
