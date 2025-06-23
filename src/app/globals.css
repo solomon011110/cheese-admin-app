@@ -1,35 +1,369 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body{
+    overflow-x: hidden;
+
+}
+p{
+    font-size: 16px;
+    font-weight: bold;
+}
+.nav{
+    background-color: #f3b333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* margin: ; */
+}
+.nav ul{
+    padding: 16px;
+}
+.nav ul li{
+    color: #ffffff;
+}
+/* -----------subscribe.html----------- */
+.form-items h1{
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: #f3b333;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+.content{
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    text-align: center;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.form-items{
+    margin: 16px 0px;
+    width: 50%;
+    text-align: left;
+    display: inline-block;
+}
+.radiobtn{
+    margin: 10px 0px;
+
+}
+.submit{
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.textbox{
+    width: 100%;
+    margin: 10px 0px;
+    padding:10px;
+    border: 2px solid #f3b333;
+    border-radius: 6px;
+    font-size: 1em;
+    line-height: 1.5;
+    box-sizing: border-box; 
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+.required::after {
+    content: "※必須";
+    color: #cc0000;
+    /* background: #cc0000; */
+    font-size: 0.8em; 
+    padding: 0.3em;
+    border-radius: 0.5em; 
+    margin-left:1em;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.btn{
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 12px 24px;   /* 余白       */
+    background    : orange;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    border        : 2px solid orange;    /* 枠の指定 */
+    border-radius: 25px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.btn:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : orange;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
 }
+.link{
+    text-align: center;
+    margin: 0px 0px 20px;
+}
+a:link{
+    color:#0000ff; text-decoration:none;
+}
+a:visited {
+    color:#0000ff; text-decoration:none;
+}
+a:hover {
+    color:#ff0000; text-decoration:none;
+}
+a:active {
+    color:#0000ff; text-decoration:none;
+}
+
+/* ---------------login.html------------------------ */
+
+.content-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:  auto;
+    width: 100vw;
+    height:100vh;
+}
+/* .login-items{
+
+    text-align: center;
+    display: inline-block;
+} */
+.login-items h1{
+    /* margin:32px 0; */
+    font-size: 64px;
+    text-align: center;
+    font-weight: bold;
+    color: #f3b333;
+}
+/* ---------------main---------------------------- */
+
+.content-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 100px; */
+    height: 100vh;
+    width: 100vw;
+    flex-flow: column;
+}
+
+.user-main{
+    border: #f3b333 solid 3px;
+    font-size: 100%;
+    padding: 30px;
+    width: 30%;
+    text-align: center;
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+/* .user-main:hover{
+    background-color: #f3b333;
+    color: #ffffff;
+    transition: all 0.2s;
+} */
+.map-main{
+    border: #f3b333 solid 3px;
+    font-size: 100%;
+    padding: 30px;
+    width: 30%;
+    text-align: center;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+.set-main{
+    border: #f3b333 solid 3px;
+    font-size: 100%;
+    padding: 30px;
+    width: 30%;
+    text-align: center;
+    /* margin-left: auto;
+    margin-right: auto;*/
+}
+.set-main:hover{
+    background-color: #f3b333;
+    color: #ffffff;
+    transition: all 0.2s;
+}
+
+.databtn{
+    border: 2px solid #f3b333;
+    color: #ffffff;
+    background-color: #f3b333;
+    padding:20px;
+    border-radius: 0px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.databtn:hover{
+    background-color: #ffffff;
+    color: #f3b333;
+    transition: all 0.2s;
+}
+
+
+summary{
+    display: block;
+    cursor: pointer;
+    /* border: 2px solid #f3b333; */
+    color: #070707;
+    background-color: #ffffff;
+    /* margin:10px auto; */
+    padding:20px;
+    border-radius: 0px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+/* summary:hover{
+    background-color: #f3b333;
+    color: #070707;
+    transition: all 0.4s;
+} */
+details{
+    border: 2px solid #f3b333;
+    margin:10px auto;
+    overflow: hidden;
+}
+
+.itema {
+    background-color: #fff;
+    /* color: #f3b333; */
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid #f3b333;
+    grid-column: 2/3;
+    grid-row: 1/4;
+}
+
+.itemb {
+    background-color: #fff;
+    /* font-size: 32px;
+    font-weight: bold; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:5px;
+    border-radius: 8px;
+    border: 2px solid #f3b333;
+    grid-column: 3/5;
+    grid-row: 1/3;
+}
+.itemc {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid #f3b333;
+    grid-column: 3/4;
+    grid-row: 3/4;
+}
+.itemd {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid #f3b333;
+    grid-column: 4/5;
+    grid-row: 3/4;
+} 
+.content-main a{
+    color: #070707;
+}
+.itemb:hover{
+    background-color: #f3b333;
+    color: #ffffff;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.itemc:hover{
+    background-color: #f3b333;
+    color: #ffffff;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.itemd:hover{
+    background-color: #f3b333;
+    color: #ffffff;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.container {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 0.5fr 1.5fr  1fr 1fr 0.5fr;
+    grid-template-rows: 1.5fr 1fr 1fr  auto;
+}
+
+/* -------------ハンバーガメニュー------------------ */
+/* メニューのスタイル */
+.menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* 初期状態では画面の外に隠れている */
+    width: 300px;
+    height: 100%;
+    background-color: #ffe6b3;
+    color: #333;
+    transition: right 0.3s ease; /* スライドインのアニメーション */
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+/* メニューが開いているとき */
+.menu.open {
+    right: 0;
+}
+
+/* ボタンのスタイル */
+.hamburger {
+    position: fixed;
+    top: 14px;
+    right: 20px;
+    width: 30px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #333;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* バツ印に変化するスタイル */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* メニューリストのスタイル */
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 80px;
+}
+
+.menu li {
+    font-size: 16px;
+    padding: 20px 0;
+    font-weight: bold;
+    /* border-bottom: 1px solid #444; */
+}
+
+.menu li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
