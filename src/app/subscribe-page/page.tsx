@@ -41,7 +41,7 @@ export default function Home() {
                     <input type="submit" value="会員登録" className="btn"></input>
                 </div>
                 <div className="link">
-                    <Link href="">既に会員登録済みの方はこちら</Link>
+                    <Link href="/">既に会員登録済みの方はこちら</Link>
                 </div>
             </div>
         </div>
