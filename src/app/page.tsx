@@ -2,6 +2,8 @@
 import Link from "next/link"
 import { useState } from "react"
 import hash  from "./lib/hash"
+import { redirect } from "next/navigation"
+
 
 export default function Home() {
     const [mail, setMail] = useState<string>("")
@@ -21,7 +23,12 @@ export default function Home() {
             })
         })
         .then(res => res.json())
-        .then(data => alert(data.password))
+        .then(data => {
+            console.log(data.message)
+            if(data.login){
+                redirect("./main-page")
+            }
+        })
     }
     return (
       <form action={login}>
