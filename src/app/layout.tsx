@@ -5,9 +5,6 @@ import "./reset-min.css";
 import React from 'react';
 import Header from "./compornets/header"
 
-const handleClick = () => {
-  alert("クリックされました")
-}
 export default function RootLayout({ children, }: Readonly <{children: React.ReactNode;}>) {
   return (
     <html lang="ja">
