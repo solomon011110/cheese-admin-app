@@ -1,21 +1,20 @@
-import type { Metadata } from "next";
-import "./globals.css";
+"use client"
 
-export const metadata: Metadata = {
-  title: "Cheese for Admin",
-  description: "管理者用アプリ",
-};
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+import "./globals.css";
+import "./reset-min.css";
+import React from 'react';
+import Header from "./compornets/header"
+
+export default function RootLayout({ children, }: Readonly <{children: React.ReactNode;}>) {
   return (
     <html lang="ja">
+      <title>Cheese for Admin</title>
+      <meta name="description" content="Cheese管理者用アプリケーション" />
       <body>
-        <header></header>
+        <Header/>
         {children}
       </body>
     </html>
   );
 }
+
