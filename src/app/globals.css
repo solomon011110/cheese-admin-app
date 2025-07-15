@@ -6,6 +6,10 @@ p{
     font-size: 16px;
     font-weight: bold;
 }
+header{
+    width: 100%;
+    height: 60px;
+}
 .nav{
     background-color: #f3b333;
     position: fixed;
