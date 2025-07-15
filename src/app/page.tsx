@@ -9,9 +9,9 @@ export default function Home() {
     const [mail, setMail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
 
-
     const login = () => {
         const hashPassword: string = hash(password)
+        console.log(hashPassword)
         fetch("./api/login", {
             headers: {
                 "Content-Type": "application/json"
@@ -27,6 +27,8 @@ export default function Home() {
             console.log(data.message)
             if(data.login){
                 redirect("./main-page")
+            }else{
+                alert(data.message)
             }
         })
     }
