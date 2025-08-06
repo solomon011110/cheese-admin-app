@@ -171,8 +171,20 @@ a:active {
     padding: 30px;
     width: 30%;
     text-align: center;
+    flex-direction: column;
+    display: flex;
+    gap: 20px;
     /* margin-left: auto; */
     /* margin-right: auto; */
+}
+
+.map-data{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: scroll;
 }
 .set-main{
     border: #f3b333 solid 3px;

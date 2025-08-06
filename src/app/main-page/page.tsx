@@ -11,6 +11,22 @@ const mapDataList = [
     title: "地図データ2",
     mapLink: "/map-page",
   },
+  {
+    title: "地図データ3",
+    mapLink: "/map-page",
+  },
+  {
+    title: "地図データ4",
+    mapLink: "/map-page",
+  },
+  {
+    title: "地図データ5",
+    mapLink: "/map-page",
+  },
+  {
+    title: "地図データ6",
+    mapLink: "/map-page",
+  },
 ];
 
 export default function Home() {
@@ -34,13 +50,17 @@ export default function Home() {
         <div className="map-main">
           <p>エリア情報</p>
 
-
+        
+        <div className="map-data">
           {mapDataList.map(list =>
               <MapDate
                 key = {list.title}
                 title = {list.title}
                 mapLink = {list.mapLink}
               />)}
+        </div>
+
+
             
 
           <div>
@@ -51,6 +71,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
 
         <br />
 
