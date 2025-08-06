@@ -1,28 +1,26 @@
 
 import Link from "next/link";
-import MapDate from "./components/MapDate"
+import MapDate from "../compornets/mapDate"
 
 const mapDataList = [
   {
     title: "地図データ1",
-    qrText: "QRコード",
     mapLink: "/map-page",
   },
   {
     title: "地図データ2",
-    qrText: "QRコード",
     mapLink: "/map-page",
   },
 ];
 
 export default function Home() {
-  const handleDelete = (title: string) => {
-    console.log(`${title} を削除します`);
-  };
+  // const handleDelete = (title: string) => {
+  //   console.log(`${title} を削除します`);
+  // };
 
-  const handleUpdate = (title: string) => {
-    console.log(`${title} を更新します`);
-  };
+  // const handleUpdate = (title: string) => {
+  //   console.log(`${title} を更新します`);
+  // };
 
   return (
     <div>
@@ -36,16 +34,14 @@ export default function Home() {
         <div className="map-main">
           <p>エリア情報</p>
 
-          {mapDataList.map((data, index) => (
-            <MapDetails
-              key={index}
-              title={data.title}
-              qrText={data.qrText}
-              mapLink={data.mapLink}
-              onDelete={() => handleDelete(data.title)}
-              onUpdate={() => handleUpdate(data.title)}
-            />
-          ))}
+
+          {mapDataList.map(list =>
+              <MapDate
+                key = {list.title}
+                title = {list.title}
+                mapLink = {list.mapLink}
+              />)}
+            
 
           <div>
             <Link href="/add-newarea">

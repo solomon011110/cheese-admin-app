@@ -2,14 +2,8 @@
 import Link from 'next/link';
 import React from 'react';
 
-type MapDateProps = {
-  title: string;
-  mapLink: string;
-  onDelete?: () => void;
-  onUpdate?: () => void;
-};
 
-const MapDate: React.FC<MapDateProps> = ({ title, mapLink, onDelete, onUpdate }) => {
+export default function MapDate ({ title, mapLink })  {
   return (
     <div>
       <details>
@@ -23,10 +17,10 @@ const MapDate: React.FC<MapDateProps> = ({ title, mapLink, onDelete, onUpdate })
           <Link href={mapLink} className="itemb">
             地図を表示
           </Link>
-          <button className="itemc" onClick={onDelete}>
+          <button className="itemc">
             地図を削除
           </button>
-          <button className="itemd" onClick={onUpdate}>
+          <button className="itemd">
             更新
           </button>
         </div>
@@ -35,4 +29,3 @@ const MapDate: React.FC<MapDateProps> = ({ title, mapLink, onDelete, onUpdate })
   );
 };
 
-export default MapDate;
