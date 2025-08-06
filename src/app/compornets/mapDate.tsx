@@ -1,6 +1,6 @@
-
+// app/main-page/page.tsx
 import Link from "next/link";
-import MapDate from "./components/MapDate"
+import MapDate from "@/components/mapDate";
 
 const mapDataList = [
   {
@@ -37,7 +37,7 @@ export default function Home() {
           <p>エリア情報</p>
 
           {mapDataList.map((data, index) => (
-            <MapDetails
+            <MapDate
               key={index}
               title={data.title}
               qrText={data.qrText}
