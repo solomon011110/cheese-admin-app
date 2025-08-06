@@ -1,67 +1,38 @@
-// app/main-page/page.tsx
-import Link from "next/link";
-import MapDate from "@/components/mapDate";
 
-const mapDataList = [
-  {
-    title: "地図データ1",
-    qrText: "QRコード",
-    mapLink: "/map-page",
-  },
-  {
-    title: "地図データ2",
-    qrText: "QRコード",
-    mapLink: "/map-page",
-  },
-];
+import Link from 'next/link';
+import React from 'react';
 
-export default function Home() {
-  const handleDelete = (title: string) => {
-    console.log(`${title} を削除します`);
-  };
+type MapDateProps = {
+  title: string;
+  mapLink: string;
+  onDelete?: () => void;
+  onUpdate?: () => void;
+};
 
-  const handleUpdate = (title: string) => {
-    console.log(`${title} を更新します`);
-  };
-
+const MapDate: React.FC<MapDateProps> = ({ title, mapLink, onDelete, onUpdate }) => {
   return (
     <div>
-      <div className="content-main">
-        <div className="user-main">
-          <p>ユーザ名</p>
-        </div>
-
-        <br />
-
-        <div className="map-main">
-          <p>エリア情報</p>
-
-          {mapDataList.map((data, index) => (
-            <MapDate
-              key={index}
-              title={data.title}
-              qrText={data.qrText}
-              mapLink={data.mapLink}
-              onDelete={() => handleDelete(data.title)}
-              onUpdate={() => handleUpdate(data.title)}
-            />
-          ))}
-
-          <div>
-            <Link href="/add-newarea">
-              <div className="databtn">
-                <p>＋新しいエリア</p>
-              </div>
-            </Link>
+      <details>
+        <summary>
+          <p>{title}</p>
+        </summary>
+        <div className="container">
+          <div className="itema">
+            <p>QRコード</p>
           </div>
+          <Link href={mapLink} className="itemb">
+            地図を表示
+          </Link>
+          <button className="itemc" onClick={onDelete}>
+            地図を削除
+          </button>
+          <button className="itemd" onClick={onUpdate}>
+            更新
+          </button>
         </div>
-
-        <br />
-
-        <Link href="/setting" className="set-main">
-          <p>設定</p>
-        </Link>
-      </div>
+      </details>
     </div>
   );
-}
+};
+
+export default MapDate;
