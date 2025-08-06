@@ -33,6 +33,7 @@ export default function Home() {
       // 1文字以上数字を使用する
       // 1文字以上記号を使用する
       // 英数字記号以外使用不可
+      console.log(userName, email, tel, birthDate, password, c_pass)
   }
   return (
     <form action="success.html">
@@ -62,11 +63,11 @@ export default function Home() {
                 <p>性別</p>
                 <fieldset>
                     <div className="radiobtn">
-                      <input type="radio" id="man" name="gender" onChange={(e) => {e.target.checked}}></input>
+                      <input type="radio" id="man" name="gender"></input>
                       <label htmlFor="man">男性</label><br></br>
-                      <input type="radio" id="woman" name="gender" onChange={(e) => {e.target.checked}}></input>
+                      <input type="radio" id="woman" name="gender"></input>
                       <label htmlFor="woman">女性</label><br></br>
-                      <input type="radio" id="else" name="gender" checked={true} onChange={(e) => {e.target.checked}}></input>
+                      <input type="radio" id="else" name="gender"></input>
                       <label htmlFor="else">回答しない</label>
                     </div>
                 </fieldset>
@@ -82,7 +83,7 @@ export default function Home() {
                 }></input>
 
                 <div className="submit">
-                    <input type="submit" value="会員登録" className="btn"></input>
+                    <input type="submit" value="会員登録" className="btn" onClick={subscribe}></input>
                 </div>
                 <div className="link">
                     <Link href="//">既に会員登録済みの方はこちら</Link>
