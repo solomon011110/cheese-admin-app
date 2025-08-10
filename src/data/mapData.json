@@ -1,0 +1,8 @@
+[
+  { "title": "地図データ1", "mapLink": "/map-page" },
+  { "title": "地図データ2", "mapLink": "/map-page" },
+  { "title": "地図データ3", "mapLink": "/map-page" },
+  { "title": "地図データ4", "mapLink": "/map-page" },
+  { "title": "地図データ5", "mapLink": "/map-page" },
+  { "title": "地図データ6", "mapLink": "/map-page" }
+]

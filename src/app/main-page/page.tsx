@@ -1,42 +1,20 @@
 
+
 import Link from "next/link";
 import MapDate from "../compornets/mapDate"
+import fs from 'fs/promises';
+import path from 'path';
 
-const mapDataList = [
-  {
-    title: "地図データ1",
-    mapLink: "/map-page",
-  },
-  {
-    title: "地図データ2",
-    mapLink: "/map-page",
-  },
-  {
-    title: "地図データ3",
-    mapLink: "/map-page",
-  },
-  {
-    title: "地図データ4",
-    mapLink: "/map-page",
-  },
-  {
-    title: "地図データ5",
-    mapLink: "/map-page",
-  },
-  {
-    title: "地図データ6",
-    mapLink: "/map-page",
-  },
-];
+type MapData = {
+  title: string;
+  mapLink: string;
+};
 
-export default function Home() {
-  // const handleDelete = (title: string) => {
-  //   console.log(`${title} を削除します`);
-  // };
+export default async function Page() {
+  const filePath = path.join(process.cwd(), 'src', 'data', 'mapData.json');
+  const jsonData = await fs.readFile(filePath, 'utf-8');
+  const mapDataList: MapData[] = JSON.parse(jsonData);
 
-  // const handleUpdate = (title: string) => {
-  //   console.log(`${title} を更新します`);
-  // };
 
   return (
     <div>
@@ -59,9 +37,7 @@ export default function Home() {
                 mapLink = {list.mapLink}
               />)}
         </div>
-
-
-            
+          
 
           <div>
             <Link href="/add-newarea">
