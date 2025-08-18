@@ -9,6 +9,7 @@ p{
 header{
     width: 100%;
     height: 60px;
+    position: absolute;
 }
 .nav{
     background-color: #f3b333;
@@ -171,8 +172,17 @@ a:active {
     padding: 30px;
     width: 30%;
     text-align: center;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.map-data{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    overflow-y: scroll;
 }
 .set-main{
     border: #f3b333 solid 3px;
@@ -375,7 +385,7 @@ details{
 /* ------------add-newarea----------- */
 .step-list {
     display: flex;
-    padding: 60px 120px 0px;
+    padding: 20px 120px;
     gap: 4px;
 }
 
@@ -420,17 +430,16 @@ details{
     justify-content: center;
 }
 .newarea-content{
-    width: 85%;
-    height: 450px;
+    width: 62%;
+    aspect-ratio: 16/9;
     margin: 30px;
-    /* padding: ; */
-    line-height: 450px;
-    /* border: solid 2px #999999; */
     text-align: center;
     background-color:#ffecc7;
     color: #fff;
     font-size: 48px;
-    /* font-weight:; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .newarea-btn{

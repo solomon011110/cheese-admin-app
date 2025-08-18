@@ -1,4 +1,4 @@
-const crypto = require("crypto")
+import crypto from "crypto"
 
 // パスワードのハッシュ化
 export default function hash(password: string){

@@ -1,57 +1,58 @@
 "use client"
 import Link from "next/link"
-import hash  from "./lib/hash"
-import { useState } from "react"
-import { redirect } from "next/navigation"
+import { redirect } from "next/navigation";
 
 
 export default function Home() {
-    const [mail, setMail] = useState<string>("")
-    const [password, setPassword] = useState<string>("")
-
-    const login = () => {
-        const hashPassword: string = hash(password)
-        console.log(hashPassword)
-        fetch("./api/login", {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "POST",
-            body: JSON.stringify({
-                email: mail,
-                password: hashPassword
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.message)
-            if(data.login){
-                redirect("./main-page")
-            }else{
-                alert(data.message)
-            }
-        })
+    // ページが読み込まれたとき
+    const login = false
+    if (login) {
+        console.log("ログイン済み")
+    }else{
+        console.log("未ログイン")
+        redirect("./login")
     }
     return (
-      <form action={login}>
-        <div className="content-login">
-            <div className="login-items">
-                <h1>LOGIN</h1>
-                <input type="email" placeholder="メールアドレス" className="textbox" required
-                    onChange={(e) => {setMail(e.target.value)}}
-                ></input>
-                <input type="password" name="password" placeholder="パスワード" className="textbox" required
-                    onChange={(e) => {setPassword(e.target.value)}}
-                ></input>
-                <div className="submit">
-                    <input type="submit" value="ログイン" className="btn"></input>
+        <div>
+            <div className="content-main">
+                <div className="user-main">
+                    <p>ユーザ名</p>
                 </div>
-                <div className="link"> 
-                    <Link href="">パスワードを忘れた方はこちら</Link><br></br>
-                    <Link href="subscribe-page">新規会員登録の方はこちら</Link>
-                </div>
-            </div>        
+                <br></br>
+                <div className="map-main">
+                    <p>エリア情報</p>
+                    <div className="map-data">
+                        <div>
+                            <details>
+                                <summary><p>地図データ1</p></summary>
+                                    <div className="container">
+                                        <div className="itema"><p>QRコード</p></div>
+                                            <Link href="map-page" className="itemb">地図を表示</Link>
+                                            <Link href="" className="itemc">地図を削除</Link>
+                                            <Link href="" className="itemd">更新</Link>
+                                    </div>
+                            </details>
+                        </div>
+                        <div>
+                            <details>
+                                <summary><p>地図データ2</p></summary>
+                                    <div className="container">
+                                        <div className="itema"><p>QRコード</p></div>
+                                        <Link href="map-page" className="itemb">地図を表示</Link>
+                                        <Link href="" className="itemc">地図を削除</Link>
+                                        <Link href="" className="itemd">更新</Link>
+                                    </div>
+                            </details>
+                        </div>
+                    </div>
+                    <div>
+                        <Link href="add-newarea">
+                            <div className="databtn"><p>＋新しいエリア</p></div>
+                        </Link>
+                    </div>
+                </div><br></br>
+                <Link href="setting" className="set-main"><p>設定</p></Link>
+            </div>
         </div>
-      </form>
-  );
+    );
 }
