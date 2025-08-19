@@ -18,7 +18,7 @@ model admin_beacon {
 
   @@index([admin_id], map: "admin_id")
   @@index([beacon_id], map: "beacon_id")
-  @@ignore
+  @@id([admin_id, beacon_id])
 }
 
 model admins {
@@ -32,14 +32,14 @@ model admins {
   beacon_pieces Int
   start_date    DateTime       @db.Date
   end_date      DateTime?      @db.Date
-  admin_beacon  admin_beacon[] @ignore
+  admin_beacon  admin_beacon[]
 }
 
 model beacons {
   id                Int            @id @default(autoincrement())
   name              String         @db.VarChar(255)
   Registration_date DateTime       @db.Date
-  admin_beacon      admin_beacon[] @ignore
+  admin_beacon      admin_beacon[]
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
@@ -52,7 +52,7 @@ model parent_child {
 
   @@index([child_id], map: "child_id")
   @@index([parent_id], map: "parent_id")
-  @@ignore
+  @@id([child_id, parent_id])
 }
 
 model users {
@@ -65,6 +65,6 @@ model users {
   age                                        DateTime?      @db.Date
   start_date                                 DateTime       @db.Date
   end_date                                   DateTime?      @db.Date
-  parent_child_parent_child_parent_idTousers parent_child[] @relation("parent_child_parent_idTousers") @ignore
-  parent_child_parent_child_child_idTousers  parent_child[] @relation("parent_child_child_idTousers") @ignore
+  parent_child_parent_child_parent_idTousers parent_child[] @relation("parent_child_parent_idTousers")
+  parent_child_parent_child_child_idTousers  parent_child[] @relation("parent_child_child_idTousers")
 }
