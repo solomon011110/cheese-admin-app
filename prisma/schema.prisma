@@ -8,7 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model admin_beacon {
   admin_id   Int
   beacon_id  Int
@@ -16,9 +15,8 @@ model admin_beacon {
   admins     admins   @relation(fields: [admin_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "admin_beacon_ibfk_1")
   beacons    beacons  @relation(fields: [beacon_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "admin_beacon_ibfk_2")
 
-  @@index([admin_id], map: "admin_id")
-  @@index([beacon_id], map: "beacon_id")
   @@id([admin_id, beacon_id])
+  @@index([beacon_id], map: "beacon_id")
 }
 
 model admins {
@@ -42,7 +40,6 @@ model beacons {
   admin_beacon      admin_beacon[]
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model parent_child {
   parent_id                           Int
   child_id                            Int
@@ -50,9 +47,8 @@ model parent_child {
   users_parent_child_parent_idTousers users    @relation("parent_child_parent_idTousers", fields: [parent_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "parent_child_ibfk_1")
   users_parent_child_child_idTousers  users    @relation("parent_child_child_idTousers", fields: [child_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "parent_child_ibfk_2")
 
+  @@id([parent_id, child_id])
   @@index([child_id], map: "child_id")
-  @@index([parent_id], map: "parent_id")
-  @@id([child_id, parent_id])
 }
 
 model users {

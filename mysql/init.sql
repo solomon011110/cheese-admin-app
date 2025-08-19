@@ -36,7 +36,8 @@ CREATE TABLE parent_child (
     child_id INT NOT NULL,
     Registration_date DATE NOT NULL,
     FOREIGN KEY (parent_id) REFERENCES users(id),
-    FOREIGN KEY (child_id) REFERENCES users(id)
+    FOREIGN KEY (child_id) REFERENCES users(id),
+    PRIMARY KEY(parent_id, child_id)
 );
 
 CREATE TABLE admin_beacon (
@@ -44,5 +45,6 @@ CREATE TABLE admin_beacon (
     beacon_id INT NOT NULL,
     order_date DATE NOT NULL,
     FOREIGN KEY (admin_id) REFERENCES admins(id),
-    FOREIGN KEY (beacon_id) REFERENCES beacons(id)
+    FOREIGN KEY (beacon_id) REFERENCES beacons(id),
+    PRIMARY KEY(admin_id, beacon_id)
 );
