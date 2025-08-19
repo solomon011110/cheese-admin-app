@@ -1,58 +1,58 @@
 "use client"
-import Link from "next/link"
-import { redirect } from "next/navigation";
+import Link from "next/link";
+import MapDate from "./compornents/mapDate"
+import fs from 'fs/promises';
+import path from 'path';
 
+type MapData = {
+  title: string;
+  mapLink: string;
+};
 
-export default function Home() {
-    // ページが読み込まれたとき
-    const login = false
-    if (login) {
-        console.log("ログイン済み")
-    }else{
-        console.log("未ログイン")
-        redirect("./login")
-    }
-    return (
-        <div>
-            <div className="content-main">
-                <div className="user-main">
-                    <p>ユーザ名</p>
-                </div>
-                <br></br>
-                <div className="map-main">
-                    <p>エリア情報</p>
-                    <div className="map-data">
-                        <div>
-                            <details>
-                                <summary><p>地図データ1</p></summary>
-                                    <div className="container">
-                                        <div className="itema"><p>QRコード</p></div>
-                                            <Link href="map-page" className="itemb">地図を表示</Link>
-                                            <Link href="" className="itemc">地図を削除</Link>
-                                            <Link href="" className="itemd">更新</Link>
-                                    </div>
-                            </details>
-                        </div>
-                        <div>
-                            <details>
-                                <summary><p>地図データ2</p></summary>
-                                    <div className="container">
-                                        <div className="itema"><p>QRコード</p></div>
-                                        <Link href="map-page" className="itemb">地図を表示</Link>
-                                        <Link href="" className="itemc">地図を削除</Link>
-                                        <Link href="" className="itemd">更新</Link>
-                                    </div>
-                            </details>
-                        </div>
-                    </div>
-                    <div>
-                        <Link href="add-newarea">
-                            <div className="databtn"><p>＋新しいエリア</p></div>
-                        </Link>
-                    </div>
-                </div><br></br>
-                <Link href="setting" className="set-main"><p>設定</p></Link>
-            </div>
+export default async function Page() {
+  const filePath = path.join(process.cwd(), 'src', 'data', 'mapData.json');
+  const jsonData = await fs.readFile(filePath, 'utf-8');
+  const mapDataList: MapData[] = JSON.parse(jsonData);
+
+  return (
+    <div>
+      <div className="content-main">
+        <div className="user-main">
+          <p>ユーザ名</p>
         </div>
-    );
+
+        <br />
+
+        <div className="map-main">
+          <p>エリア情報</p>
+
+        
+        <div className="map-data">
+          {mapDataList.map(list =>
+              <MapDate
+                key = {list.title}
+                title = {list.title}
+                mapLink = {list.mapLink}
+              />)}
+        </div>
+          
+
+          <div>
+            <Link href="/add-newarea">
+              <div className="databtn">
+                <p>＋新しいエリア</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+
+        <br />
+
+        <Link href="/setting" className="set-main">
+          <p>設定</p>
+        </Link>
+      </div>
+    </div>
+  );
 }

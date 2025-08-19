@@ -184,6 +184,15 @@ a:active {
     gap: 10px;
     overflow-y: scroll;
 }
+
+.map-data{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: scroll;
+}
 .set-main{
     border: #f3b333 solid 3px;
     font-size: 100%;
