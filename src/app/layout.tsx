@@ -3,7 +3,7 @@
 import "./globals.css";
 import "./reset-min.css";
 import React from 'react';
-import Header from "./compornets/header"
+import Header from "./compornents/header"
 
 export default function RootLayout({ children, }: Readonly <{children: React.ReactNode;}>) {
   return (

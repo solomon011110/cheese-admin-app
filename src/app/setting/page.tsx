@@ -27,7 +27,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="setbtn">
-                    <Link href="">
+                    <Link href="main-page">
                         <input type="submit" value="完了" className="btn"></input>
                     </Link>
                 </div>

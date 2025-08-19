@@ -1,5 +1,5 @@
+"use client"
 import Link from "next/link"
-
 
 export default function Home() {
     return (
@@ -22,19 +22,18 @@ export default function Home() {
                 </li>
             </ol>
             <div className="newarea-container">
-                <div className="newarea-content">読み込んだ画像が表示されます</div>
+                <div className="newarea-content">
+                    {/* <img src="" alt="表示できません" /> */}
+                </div>
             </div>
-
-
             <div className="deco-file">
                 <label>地図画像を選択
-                    <input type="file"  className=""></input>
+                    <input type="file" id="img" accept=".png, .jpg, .jpeg"></input>
                 </label>
                 <Link href="add-newarea-beacon">
                     <div className="okbtn">完了</div>
                 </Link>
             </div>
-            
         </form>
     )
 }

@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model admin_beacon {
+  admin_id   Int
+  beacon_id  Int
+  order_date DateTime @db.Date
+  admins     admins   @relation(fields: [admin_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "admin_beacon_ibfk_1")
+  beacons    beacons  @relation(fields: [beacon_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "admin_beacon_ibfk_2")
+
+  @@id([admin_id, beacon_id])
+  @@index([beacon_id], map: "beacon_id")
+}
+
+model admins {
+  id            Int            @id @default(autoincrement())
+  name          String         @db.VarChar(255)
+  mail          String         @db.VarChar(255)
+  password      String         @db.VarChar(255)
+  number        String         @unique(map: "number") @db.VarChar(255)
+  gender        String?        @db.VarChar(10)
+  age           DateTime?      @db.Date
+  beacon_pieces Int
+  start_date    DateTime       @db.Date
+  end_date      DateTime?      @db.Date
+  admin_beacon  admin_beacon[]
+}
+
+model beacons {
+  id                Int            @id @default(autoincrement())
+  name              String         @db.VarChar(255)
+  Registration_date DateTime       @db.Date
+  admin_beacon      admin_beacon[]
+}
+
+model parent_child {
+  parent_id                           Int
+  child_id                            Int
+  Registration_date                   DateTime @db.Date
+  users_parent_child_parent_idTousers users    @relation("parent_child_parent_idTousers", fields: [parent_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "parent_child_ibfk_1")
+  users_parent_child_child_idTousers  users    @relation("parent_child_child_idTousers", fields: [child_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "parent_child_ibfk_2")
+
+  @@id([parent_id, child_id])
+  @@index([child_id], map: "child_id")
+}
+
+model users {
+  id                                         Int            @id @default(autoincrement())
+  name                                       String         @db.VarChar(255)
+  mail                                       String         @unique(map: "mail") @db.VarChar(255)
+  password                                   String         @db.VarChar(255)
+  number                                     String         @unique(map: "number") @db.VarChar(255)
+  gender                                     String?        @db.VarChar(10)
+  age                                        DateTime?      @db.Date
+  start_date                                 DateTime       @db.Date
+  end_date                                   DateTime?      @db.Date
+  parent_child_parent_child_parent_idTousers parent_child[] @relation("parent_child_parent_idTousers")
+  parent_child_parent_child_child_idTousers  parent_child[] @relation("parent_child_child_idTousers")
+}

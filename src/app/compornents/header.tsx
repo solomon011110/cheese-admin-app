@@ -30,7 +30,7 @@ export default function Header(){
                     <span></span>
                 </div>
                 <ul>
-                <li><Link href="#">設定</Link></li>
+                <li><Link href="setting">設定</Link></li>
                 <li><Link href="#">ログアウト</Link></li>
                 </ul>
             </nav>

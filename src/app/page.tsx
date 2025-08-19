@@ -1,57 +1,58 @@
 "use client"
-import Link from "next/link"
-import { useState } from "react"
-import hash  from "./lib/hash"
-import { redirect } from "next/navigation"
+import Link from "next/link";
+import MapDate from "./compornents/mapDate"
+import fs from 'fs/promises';
+import path from 'path';
 
+type MapData = {
+  title: string;
+  mapLink: string;
+};
 
-export default function Home() {
-    const [mail, setMail] = useState<string>("")
-    const [password, setPassword] = useState<string>("")
+export default async function Page() {
+  const filePath = path.join(process.cwd(), 'src', 'data', 'mapData.json');
+  const jsonData = await fs.readFile(filePath, 'utf-8');
+  const mapDataList: MapData[] = JSON.parse(jsonData);
 
-    const login = () => {
-        const hashPassword: string = hash(password)
-        console.log(hashPassword)
-        fetch("./api/login", {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "POST",
-            body: JSON.stringify({
-                email: mail,
-                password: hashPassword
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.message)
-            if(data.login){
-                redirect("./main-page")
-            }else{
-                alert(data.message)
-            }
-        })
-    }
-    return (
-      <form action={login}>
-        <div className="content-login">
-            <div className="login-items">
-                <h1>LOGIN</h1>
-                <input type="email" placeholder="メールアドレス" className="textbox" required
-                    onChange={(e) => {setMail(e.target.value)}}
-                ></input>
-                <input type="password" name="password" placeholder="パスワード" className="textbox" required
-                    onChange={(e) => {setPassword(e.target.value)}}
-                ></input>
-                <div className="submit">
-                    <input type="submit" value="ログイン" className="btn"></input>
-                </div>
-                <div className="link"> 
-                    <Link href="">パスワードを忘れた方はこちら</Link><br></br>
-                    <Link href="subscribe-page">新規会員登録の方はこちら</Link>
-                </div>
-            </div>        
+  return (
+    <div>
+      <div className="content-main">
+        <div className="user-main">
+          <p>ユーザ名</p>
         </div>
-      </form>
+
+        <br />
+
+        <div className="map-main">
+          <p>エリア情報</p>
+
+        
+        <div className="map-data">
+          {mapDataList.map(list =>
+              <MapDate
+                key = {list.title}
+                title = {list.title}
+                mapLink = {list.mapLink}
+              />)}
+        </div>
+          
+
+          <div>
+            <Link href="/add-newarea">
+              <div className="databtn">
+                <p>＋新しいエリア</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+
+        <br />
+
+        <Link href="/setting" className="set-main">
+          <p>設定</p>
+        </Link>
+      </div>
+    </div>
   );
 }

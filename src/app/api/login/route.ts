@@ -1,5 +1,4 @@
 "use server"
-import { redirect } from 'next/navigation'
 import { NextRequest, NextResponse } from "next/server";
 import hash from '@/app/lib/hash';
 
@@ -10,7 +9,7 @@ export async function POST(req: NextRequest){
     const body = await req.json()
     const hashPass = hash("aaaaa")
     let isSuccess = false
-    let res = {
+    const res = {
         message: "POST通信",
         login: false
     }

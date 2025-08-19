@@ -1,0 +1,42 @@
+services:
+  app:
+    tty: true
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+      - "5555:5555"
+    volumes:
+      - ./:/app
+      - node_modules:/app/node_modules
+    depends_on:
+      - db
+  db:
+    image: mysql:8.4
+    container_name: my-mysql-container
+    hostname: db
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: 'pass' # ルートユーザーのパスワード
+      MYSQL_DATABASE: 'mydatabase' # 作成するデータベース名
+      MYSQL_USER: "appuser"
+      MYSQL_PASSWORD: "apppass"
+    ports:
+      - "3306:3306"
+    command:
+      - --mysql_native_password=ON
+      # - --character-set-server=utf8mb4
+      # - --collation-server=utf8mb4_0900_ai_ci
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql:/docker-entrypoint-initdb.d # 初期化スクリプトをマウント
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  mysql_data:
+  node_modules:

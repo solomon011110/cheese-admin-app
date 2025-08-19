@@ -1,6 +1,3 @@
-import Link from "next/link"
-
-
 export default function Home() {
     return (
         <form action="">
@@ -9,36 +6,6 @@ export default function Home() {
                 <label>
                     <input type="text" placeholder="検索"></input>
                 </label>
-            </div>
-            <div className="map-container">
-                <div className="map-content">
-                    <div className="map-sheet"></div>
-                </div>
-                <div className="map-content">
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                </div>
-                <div className="map-content">
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                </div>
-                <div className="map-content">
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                </div>
-                <div className="map-content">
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                </div>
-                <div className="map-content">
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                    <div className="map-sheet"></div>
-                </div>
             </div>
         </form>
     )
