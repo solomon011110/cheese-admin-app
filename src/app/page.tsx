@@ -1,18 +1,23 @@
-"use client"
+"use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import MapDate from "./compornents/mapDate"
-import fs from 'fs/promises';
-import path from 'path';
+import MapDate from "./compornents/mapDate";
 
 type MapData = {
   title: string;
   mapLink: string;
 };
 
-export default async function Page() {
-  const filePath = path.join(process.cwd(), 'src', 'data', 'mapData.json');
-  const jsonData = await fs.readFile(filePath, 'utf-8');
-  const mapDataList: MapData[] = JSON.parse(jsonData);
+export default function Page() {
+  const [mapDataList, setMapDataList] = useState<MapData[]>([]);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/mapData")
+      .then((res) => res.json())
+      .then((data) => setMapDataList(data))
+      .catch(() => setError(true));
+  }, []);
 
   return (
     <div>
@@ -26,16 +31,21 @@ export default async function Page() {
         <div className="map-main">
           <p>エリア情報</p>
 
-        
-        <div className="map-data">
-          {mapDataList.map(list =>
-              <MapDate
-                key = {list.title}
-                title = {list.title}
-                mapLink = {list.mapLink}
-              />)}
-        </div>
-          
+          <div className="map-data">
+            {error ? (
+              <p>データの取得に失敗しました。</p>
+            ) : mapDataList.length === 0 ? (
+              <p>読み込み中...</p>
+            ) : (
+              mapDataList.map((list) => (
+                <MapDate
+                  key={list.title}
+                  title={list.title}
+                  mapLink={list.mapLink}
+                />
+              ))
+            )}
+          </div>
 
           <div>
             <Link href="/add-newarea">
@@ -45,7 +55,6 @@ export default async function Page() {
             </Link>
           </div>
         </div>
-
 
         <br />
 
