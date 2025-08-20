@@ -2,14 +2,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import MapDate from "./compornents/mapDate";
+import { useSession } from "next-auth/react"; 
 
 type MapData = {
-  id: string;
+  id?: string;  // 存在しないとエラーが出てしまうので一時的に必須ではなくしている
   title: string;
   mapLink: string;
 };
 
 export default function Page() {
+  const { data: session, status } = useSession(); 
   const [mapDataList, setMapDataList] = useState<MapData[]>([]);
   const [error, setError] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -25,11 +27,13 @@ export default function Page() {
     setRefreshKey((prev) => prev + 1);
   };
 
+  const userName = session?.user?.name ?? "Guest"; 
+
   return (
     <div>
       <div className="content-main">
         <div className="user-main">
-          <p>ユーザ名</p>
+          <p>{userName}</p> {/* 表示をセッション連動 */}
         </div>
 
         <br />
