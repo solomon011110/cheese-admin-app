@@ -26,11 +26,10 @@ services:
       - "3306:3306"
     command:
       - --mysql_native_password=ON
-      # - --character-set-server=utf8mb4
-      # - --collation-server=utf8mb4_0900_ai_ci
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql:/docker-entrypoint-initdb.d # 初期化スクリプトをマウント
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s

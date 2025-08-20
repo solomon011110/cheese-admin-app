@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import MapDate from "./compornents/mapDate";
+import fecthUsers from "./lib/db"
 
 type MapData = {
   title: string;
@@ -11,7 +12,7 @@ type MapData = {
 export default function Page() {
   const [mapDataList, setMapDataList] = useState<MapData[]>([]);
   const [error, setError] = useState(false);
-
+  fecthUsers()
   useEffect(() => {
     fetch("/api/mapData")
       .then((res) => res.json())
