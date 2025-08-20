@@ -5,6 +5,7 @@ import MapDate from "./compornents/mapDate";
 import fecthUsers from "./lib/db"
 
 type MapData = {
+  id: string;
   title: string;
   mapLink: string;
 };
@@ -12,13 +13,19 @@ type MapData = {
 export default function Page() {
   const [mapDataList, setMapDataList] = useState<MapData[]>([]);
   const [error, setError] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
   fecthUsers()
+
   useEffect(() => {
     fetch("/api/mapData")
       .then((res) => res.json())
       .then((data) => setMapDataList(data))
       .catch(() => setError(true));
-  }, []);
+  }, [refreshKey]);
+
+  const handleRefresh = () => {
+    setRefreshKey((prev) => prev + 1);
+  };
 
   return (
     <div>
@@ -40,9 +47,11 @@ export default function Page() {
             ) : (
               mapDataList.map((list) => (
                 <MapDate
-                  key={list.title}
+                  key={list.id}
+                  id={list.id}
                   title={list.title}
                   mapLink={list.mapLink}
+                  onRefresh={handleRefresh}
                 />
               ))
             )}
