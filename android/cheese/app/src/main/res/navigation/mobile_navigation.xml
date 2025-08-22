@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.ih13a175_05_kaneko.cheese.ui.home.HomeFragment"
+        android:label="@string/app_title"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_qrCodeScannerFragment"
+            app:destination="@id/qrScannerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.ih13a175_05_kaneko.cheese.ui.setting.SettingFragment"
+        android:label="@string/app_title"
+        tools:layout="@layout/fragment_setting" />
+
+    <fragment
+        android:id="@+id/qrScannerFragment"
+        android:name="com.ih13a175_05_kaneko.cheese.QrCodeScannerFragment"
+        android:label="@string/title_qr_scanner"
+        tools:layout="@layout/fragment_qr_code_scanner" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_slideshow"-->
+<!--        android:name="com.ih13a175_05_kaneko.cheese.ui.slideshow.SlideshowFragment"-->
+<!--        android:label="@string/app_title"-->
+<!--        tools:layout="@layout/fragment_slideshow" />-->
+</navigation>
