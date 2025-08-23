@@ -1,6 +1,5 @@
 "use client"
 import Link from "next/link"
-import hash  from "../lib/hash"
 import { useState } from "react"
 import { redirect } from "next/navigation"
 
@@ -10,8 +9,6 @@ export default function Home() {
     const [password, setPassword] = useState<string>("")
 
     const login = () => {
-        const hashPassword: string = hash(password)
-        console.log(hashPassword)
         fetch("./api/login", {
             headers: {
                 "Content-Type": "application/json"
@@ -19,14 +16,14 @@ export default function Home() {
             method: "POST",
             body: JSON.stringify({
                 email: mail,
-                password: hashPassword
+                password: password
             })
         })
         .then(res => res.json())
         .then(data => {
             console.log(data.message)
             if(data.login){
-                redirect("./main-page")
+                redirect("../")
             }else{
                 alert(data.message)
             }
@@ -37,7 +34,7 @@ export default function Home() {
         <div className="content-login">
             <div className="login-items">
                 <h1>LOGIN</h1>
-                <input type="email" placeholder="メールアドレス" className="textbox" required
+                <input type="email" name="mail" placeholder="メールアドレス" className="textbox" required
                     onChange={(e) => {setMail(e.target.value)}}
                 ></input>
                 <input type="password" name="password" placeholder="パスワード" className="textbox" required

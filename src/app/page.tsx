@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import MapDate from "./compornents/mapDate";
-import fecthUsers from "./lib/db"
+import { redirect } from "next/navigation";
 
 type MapData = {
   id: string;
@@ -14,7 +14,8 @@ export default function Page() {
   const [mapDataList, setMapDataList] = useState<MapData[]>([]);
   const [error, setError] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
-  fecthUsers()
+
+  const login = false
 
   useEffect(() => {
     fetch("/api/mapData")
@@ -22,6 +23,13 @@ export default function Page() {
       .then((data) => setMapDataList(data))
       .catch(() => setError(true));
   }, [refreshKey]);
+
+  if(login){
+    console.log("ログイン済み")
+  }else{
+    redirect("./login")
+  }
+
 
   const handleRefresh = () => {
     setRefreshKey((prev) => prev + 1);
