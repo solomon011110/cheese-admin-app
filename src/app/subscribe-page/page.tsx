@@ -86,10 +86,23 @@ export default function Home() {
       setSuccessMessage("");
       return;
     }
-
+    // バリデーションチェック通過
     if (Object.keys(errors).length === 0) {
-      setSuccessMessage("登録が完了しました！");
-      console.log("登録成功:", { userName, email, tel, birthDate, gender, password });
+      const userData = { userName, email, tel, birthDate, gender, password }
+      const user = JSON.stringify(userData)
+        fetch("./api/subscribe", {
+            headers: {"Content-Type": "application/json"},
+            method: "POST",
+            body: user
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if(data.competitor){
+              setErrors({email: data.message})
+            }else if(data.subscribe){
+              setSuccessMessage("登録が完了しました。")
+            }
+          })
     } else {
       setSuccessMessage("");
     }

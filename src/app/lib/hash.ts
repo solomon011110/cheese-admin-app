@@ -1,7 +1,7 @@
 import crypto from "crypto"
 
 // パスワードのハッシュ化
-export default function hash(password: string){
+export default function hashpass(password: string){
     const hash = crypto.createHash("sha256")
     hash.update(password)
     const hashHex = hash.digest("hex")
