@@ -1,39 +1,42 @@
 import { Prisma, PrismaClient } from "@/generated/prisma";
 
-
-const prisma = new PrismaClient()
+  const prisma = new PrismaClient()
 
 export default class DBcontrol{
-  admins: () => Promise<void>;
+  today: Date;
+
   constructor(){
-      this.admins = async () => {
-        await prisma.admins.findMany()
-          .then((res) => JSON.stringify(res))
-          .then((data) => {return data })
-      }
+    this.today = new Date()
+
   }
   // ゲッター
-  getAdmins(){
-    return JSON.stringify(this.admins)
+  async getAdmins(){
+    const adminsData = await prisma.admins.findMany()
+      .then((res) => JSON.stringify(res))
+      .then((data) => {
+        console.log(data)
+        return data
+      })
+    return adminsData
   }
   
   // 追加
-  async addAdmins(name: string, 
-    mail: string,
+  async addAdmins(body: {userName: string, 
+    email: string,
     password: string,
-    number: string,
+    tel: string,
     gender?: string | null | undefined,
-    age?: string | Date | null | undefined){
+    birthDate?: string | Date | null | undefined}){
 
     const admin: Prisma.adminsCreateInput = {
-      name: name,
-      mail: mail,
-      password: password,
-      number: number,
-      gender: gender,
-      age: age,
+      name: body.userName,
+      mail: body.email,
+      password: body.password,
+      number: body.tel,
+      gender: body.gender,
+      age: body.birthDate,
       beacon_pieces: 0,
-      start_date: "",
+      start_date: this.today.toISOString(),
       end_date: null
     }
 

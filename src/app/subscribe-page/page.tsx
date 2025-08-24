@@ -73,6 +73,8 @@ export default function Home() {
   const subscribe = (e: React.FormEvent) => {
     e.preventDefault();
 
+    // console.log(new Date(birthDate).toISOString())
+
     const missingFields: string[] = [];
     if (!userName) missingFields.push("ユーザー名");
     if (!email) missingFields.push("メールアドレス");
@@ -179,7 +181,7 @@ export default function Home() {
                 id="else"
                 name="gender"
                 value="回答しない"
-                checked={gender === "回答しない"}
+                checked={gender === "回答しない" || gender === ""}
                 onChange={(e) => setGender(e.target.value)}
               />
               <label htmlFor="else">回答しない</label>
