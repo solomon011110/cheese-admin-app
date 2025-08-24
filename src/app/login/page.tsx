@@ -21,11 +21,9 @@ export default function Home() {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data.message)
             if(data.login){
-                redirect("../")
-            }else{
                 alert(data.message)
+                redirect("../")
             }
         })
     }
@@ -52,3 +50,4 @@ export default function Home() {
       </form>
   );
 }
+

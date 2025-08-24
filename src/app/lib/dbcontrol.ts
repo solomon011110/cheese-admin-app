@@ -14,7 +14,6 @@ export default class DBcontrol{
     const adminsData = await prisma.admins.findMany()
       .then((res) => JSON.stringify(res))
       .then((data) => {
-        console.log(data)
         return data
       })
     return adminsData
