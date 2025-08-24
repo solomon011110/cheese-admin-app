@@ -4,7 +4,7 @@ import { useState } from "react"
 import { redirect } from "next/navigation"
 
 
-export default function Home() {
+export default function Login() {
     const [mail, setMail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
 
@@ -22,8 +22,7 @@ export default function Home() {
         .then(res => res.json())
         .then(data => {
             if(data.login){
-                alert(data.message)
-                redirect("../")
+                redirect("../", data.login)
             }
         })
     }

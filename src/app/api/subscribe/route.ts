@@ -59,5 +59,9 @@ async function arrengeFormat(body: {
 	// 性別の空白をnullに変更する
 	if(!body.gender){
 		body.gender = null
+	}else if(body.gender === "男性"){
+		body.gender = "male"
+	}else if(body.gender === "女性"){
+		body.gender = "female"
 	}
 }

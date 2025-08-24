@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import MapDate from "./compornents/mapDate";
-import { redirect } from "next/navigation"
-import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 
 type MapData = {
@@ -13,10 +12,10 @@ type MapData = {
 };
 
 export default function Page() {
-  const {data: session} = useSession()
   const [mapDataList, setMapDataList] = useState<MapData[]>([]);
   const [error, setError] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [login, setLogin] = useState(false)
 
   useEffect(() => {
     fetch("/api/mapData")
@@ -29,10 +28,9 @@ export default function Page() {
     setRefreshKey((prev) => prev + 1);
   }
 
-  if (!session) {
+  if (!login) {
     redirect("./login")
   }else{
-    console.log(session)
     return (
       <div>
         <div className="content-main">

@@ -20,7 +20,7 @@ export default function Header(){
         <header>
             <nav className="nav">
                 <ul>
-                    <li>Cheese for admin</li>
+                    <Link href="./"><li>Cheese for admin</li></Link>
                 </ul>
             </nav>
             <nav className={menu}>
